@@ -19,6 +19,6 @@ class User extends Authenticatable
         'email',
         'country',
         'rate',
-        'currency'
+        'currency_unit'
     ];
 }

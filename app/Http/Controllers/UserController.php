@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUserRequest;
 use Illuminate\Http\Request;
-
+use App\Services\UserService;
+use App\Http\Resources\UserResource;
+use Illuminate\Support\Str;
+use App\Models\User;
 class UserController extends Controller
 {
     /**
@@ -33,9 +37,19 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUserRequest $userRequest, UserService $userService)
     {
-        //
+        //Belove section moved out to a service in order to simplify the controller
+        /*
+        $filedCorrectedData = [];
+        foreach ($userRequest as $k => $v){
+            $filedCorrectedData[Str::snake($k)] = $v;
+        }
+
+        $user = User::create($filedCorrectedData);
+        */
+        $out = $userService->store($userRequest->validated());
+        return new UserResource($out);
     }
 
     /**

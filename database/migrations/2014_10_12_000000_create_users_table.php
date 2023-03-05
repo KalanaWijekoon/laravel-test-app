@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('country')->nullable();
             $table->float('rate', 5, 2);
-            $table->string('currency');
+            $table->string('currency_unit');
             $table->timestamps();
         });
     }
