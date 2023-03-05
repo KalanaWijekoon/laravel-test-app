@@ -12,11 +12,11 @@
                 {{ csrf_field() }}
                     <div class="form-group">
                         <label>User ID</label>
-                        <input type="number" class="form-control" name="userID" placeholder="User ID" required>
+                        <input type="number" class="form-control form-control-sm" name="userID" placeholder="User ID" required>
                     </div>
                     <div class="form-group">
                         <label>Currency</label>
-                        <select name="currencyUnit" class="form-select" required>
+                        <select name="currencyUnit" class="form-select form-select-sm" required>
                             <option value="" selected>Please select a currency</option>
                             <option value="eur">EUR</option>
                             <option value="usd">USD</option>

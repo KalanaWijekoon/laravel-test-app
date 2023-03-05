@@ -1,4 +1,8 @@
 /* General Website Style rules */
 body{
-    background-color: lightgray;
+    background-color: aliceblue;
+}
+
+.invalid-feedback{
+    display: block;
 }

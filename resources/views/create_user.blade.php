@@ -12,29 +12,30 @@
                     {{ csrf_field() }}
                     <div class="form-group">
                         <label>First Name</label>
-                        <input type="text" class="form-control" name="firstName" placeholder="First Name" required>
+                        <input type="text" class="form-control form-control-sm" name="firstName" placeholder="First Name" required>
                     </div>
                     <div class="form-group">
                         <label>Last Name</label>
-                        <input type="text" class="form-control" name="lastName" placeholder="Last Name" required>
+                        <input type="text" class="form-control form-control-sm" name="lastName" placeholder="Last Name" required>
                     </div>
                     <div class="form-group">
                         <label>Email</label>
-                        <input type="email" class="form-control" name="email" placeholder="E-mail" required>
+                        <input type="email" class="form-control form-control-sm" name="email" placeholder="E-mail" required>
+                        @if ($errors->has('email'))
+                            <small class="form-text invalid-feedback">{{ $errors->first('email') }}</small>
+                        @endif
                     </div>
                     <div class="form-group">
                         <label>Country</label>
-                        <input type="text" class="form-control" name="country" placeholder="Country">
+                        <input type="text" class="form-control form-control-sm" name="country" placeholder="Country">
                     </div>
                     <div class="form-group">
                         <label>Hourly Rate</label>
-                        <input type="number" class="form-control" step="0.01" name="rate" placeholder="Hourly Rate" required>
+                        <input type="number" class="form-control form-control-sm" step="0.01" name="rate" placeholder="Hourly Rate" required>
                     </div>
                     <div class="form-group">
                         <label>Currency</label>
-
-
-                        <select name="currencyUnit" class="form-select" required>
+                        <select name="currencyUnit" class="form-select form-select-sm" required>
                             <option value="" selected>Please select a currency</option>
                             <option value="eur">EUR</option>
                             <option value="usd">USD</option>
