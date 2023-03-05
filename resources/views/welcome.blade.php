@@ -8,7 +8,7 @@
             <div class="col">
                 <br>
                 <h4>Search User</h4>
-                <form>
+                <form method="get" action="user/search/">
                 {{ csrf_field() }}
                     <div class="form-group">
                         <label>User ID</label>

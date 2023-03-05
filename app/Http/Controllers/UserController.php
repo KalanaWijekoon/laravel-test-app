@@ -18,6 +18,7 @@ class UserController extends Controller
     public function index()
     {
         //
+        return view('welcome');
     }
 
     /**
@@ -50,6 +51,19 @@ class UserController extends Controller
         */
         $out = $userService->store($userRequest->validated());
         return new UserResource($out);
+    }
+
+    /**
+     * Custome method defined to get currency unit from request and 
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function searchUserDetails(Request $request)
+    {
+        //
+        $data = User::find($request['userID']);
+        return new UserResource($data);
     }
 
     /**

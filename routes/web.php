@@ -17,5 +17,7 @@ use App\Http\Controllers\UserController;
 Route::get('/', function () {
     return view('welcome');
 });
-
+// route for custome search form
+Route::get('user/search/',[UserController::class, 'searchUserDetails']);
+// route for user
 Route::resource('user',UserController::class);
