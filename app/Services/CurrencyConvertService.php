@@ -6,7 +6,8 @@ use App\Currency\InternalCurrencyDriver;
 use Exception;
 
 
-class CurrencyConvertService{
+class CurrencyConvertService
+{
 
     private $rates;
     
@@ -25,7 +26,10 @@ class CurrencyConvertService{
     //get currency rates
     public function getExchangeRates()
     {
-        if(env('CURRENCY_RATES_DRIVER')==='external'){
+        
+        $env = config('currency.exchange_rates_driver');
+        if($env ==='external')
+        {
             try{
                 $externaldriver = new ExternalCurrencyDriver();
                 $this->rates = $externaldriver->getCurrencyRates($this->currencyUnit, $this->defaultCurrencies);
@@ -35,18 +39,15 @@ class CurrencyConvertService{
             }
         }
         
-        if(env('CURRENCY_RATES_DRIVER')==='local'){
+        if($env ==='local'){
             $internaldriver = new InternalCurrencyDriver();
             $this->rates = $internaldriver->getCurrencyRates($this->currencyUnit, $this->defaultCurrencies);
         }
     }
 
-
     //calculate new rate and return calculated rate
     public function getConvertedHourlyRate()
     {
-        return round($this->hourlyRate * $this->rates[$this->newCurrency], 2);
+        return round($this->rates[$this->newCurrency] * $this->hourlyRate, 2);
     }
-
-
 }

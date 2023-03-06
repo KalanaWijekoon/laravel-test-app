@@ -2,8 +2,6 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
-use App\Currency\CurrencyDriverInterface;
 use App\Services\CurrencyConvertService;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -26,6 +24,7 @@ class User extends Model
     public function getConvertedHourlyRate($requiredCurrency)
     {
         $converter = new CurrencyConvertService($this->rate, $this->currency_unit, $requiredCurrency);
+        // initialize model's rate with new value from Currency Converter class
         $this->rate = $converter->getConvertedHourlyRate();
         $this->currency = $requiredCurrency;
     }
