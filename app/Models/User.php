@@ -3,12 +3,12 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Currency\CurrencyDriverInterface;
+use App\Services\CurrencyConvertService;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Model;
 
-class User extends Authenticatable
+class User extends Model
 {
     use HasFactory;
 
@@ -21,4 +21,12 @@ class User extends Authenticatable
         'rate',
         'currency_unit'
     ];
+
+    //Manipulate currency by converting
+    public function getConvertedHourlyRate($requiredCurrency)
+    {
+        $converter = new CurrencyConvertService($this->rate, $this->currency_unit, $requiredCurrency);
+        $this->rate = $converter->getConvertedHourlyRate();
+        $this->currency = $requiredCurrency;
+    }
 }
