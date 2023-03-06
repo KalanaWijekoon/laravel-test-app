@@ -31,7 +31,7 @@
                     </div>
                     <div class="form-group">
                         <label>Hourly Rate</label>
-                        <input type="number" class="form-control form-control-sm" step="0.01" name="rate" placeholder="Hourly Rate" required>
+                        <input type="number" class="form-control form-control-sm" step="0.01" name="rate" placeholder="Hourly Rate" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxLength="10" required>
                         @if ($errors->has('rate'))
                             <small class="form-text invalid-feedback">{{ $errors->first('rate') }}</small>
                         @endif
