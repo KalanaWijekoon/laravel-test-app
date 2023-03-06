@@ -11,7 +11,8 @@ This is a Laravel application capable of storing freelancer accounts with essent
 4. Go inside the folder
 ```bash
 5. Run composer install
-6. Run php artisan key:generate
+6. Copy .env.example as .env
+7. Run php artisan key:generate
 ```
 7. please note below configuration
 ```bash
@@ -19,8 +20,8 @@ APP_NAME=Laravel
 DB_DATABASE=currency_converter
 ```
 ```bash
-7. Run php artisan migrate
-8. Run php artisan serve
+8. Run php artisan migrate
+9. Run php artisan serve --port=<port>
 ```
 
 ## Notes
