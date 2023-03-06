@@ -28,7 +28,7 @@ class StoreUserRequest extends FormRequest
             'lastName' => 'required',
             'email' => 'required|email|unique:users',
             'country' => 'required',
-            'rate' => 'required|numeric',
+            'rate' => 'required|numeric|digits:5',
             'currencyUnit' => 'required'
         ];
     }
