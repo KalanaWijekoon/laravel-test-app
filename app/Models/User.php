@@ -26,6 +26,6 @@ class User extends Model
         $converter = new CurrencyConvertService($this->rate, $this->currency_unit, $requiredCurrency);
         // initialize model's rate with new value from Currency Converter class
         $this->rate = $converter->getConvertedHourlyRate();
-        $this->currency = $requiredCurrency;
+        $this->currency_unit = $requiredCurrency;
     }
 }
