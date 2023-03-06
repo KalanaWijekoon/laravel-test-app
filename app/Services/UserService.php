@@ -6,7 +6,7 @@ use Illuminate\Support\Str;
 
 class UserService {
 
-    public function store(array $userData):User
+    public function create(array $userData):User
     {
 
         //Converting request fields in to column names (snake case) using snake function

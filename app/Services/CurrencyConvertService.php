@@ -27,7 +27,7 @@ class CurrencyConvertService
     public function getExchangeRates()
     {
         
-        $env = config('currency.exchange_rates_driver');
+        $env = env('CURRENCY_RATES_DRIVER');
         if($env ==='external')
         {
             try{

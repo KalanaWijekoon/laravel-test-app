@@ -24,7 +24,7 @@ DB_DATABASE=currency_converter
 ```
 
 ## Notes
-Key for APILayer API and driver configuration is set in config/currency.php
+Key for APILayer API and driver configuration is set in .env and this is available in .env.sample as well.
 
 Laravel Version - 9.52.4
 

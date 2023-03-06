@@ -49,7 +49,7 @@ class UserController extends Controller
 
         $user = User::create($filedCorrectedData);
         */
-        $out = $userService->store($userRequest->validated());
+        $out = $userService->create($userRequest->validated());
         return new UserResource($out);
     }
 
