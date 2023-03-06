@@ -32,6 +32,9 @@
                     <div class="form-group">
                         <label>Hourly Rate</label>
                         <input type="number" class="form-control form-control-sm" step="0.01" name="rate" placeholder="Hourly Rate" required>
+                        @if ($errors->has('rate'))
+                            <small class="form-text invalid-feedback">{{ $errors->first('rate') }}</small>
+                        @endif
                     </div>
                     <div class="form-group">
                         <label>Currency</label>

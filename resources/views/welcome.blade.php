@@ -8,7 +8,7 @@
             <div class="col">
                 <br>
                 <h4>Search User</h4>
-                <form method="get" action="user/search/">
+                <form id="getDetails">
                 {{ csrf_field() }}
                     <div class="form-group">
                         <label>User ID</label>
@@ -24,9 +24,19 @@
                         </select>
                     </div>
                     <br>
-                    <button class="btn btn-primary" type="submit">Submit</button>
+                    <button id="submit" class="btn btn-primary" type="submit">Submit</button>
                 </form>
             </div>
             <div class="col"></div>
+
+            <script>
+                var form = document.querySelector('#getDetails');
+
+                // Override default for submit action and send a get request for custom route
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    window.location.href = '/users/'+form.userID.value+'/'+form.currencyUnit.value;
+                })
+            </script>
         <!-- section end -->
 @endsection

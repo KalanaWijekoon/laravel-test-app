@@ -6,8 +6,8 @@ use App\Http\Requests\StoreUserRequest;
 use Illuminate\Http\Request;
 use App\Services\UserService;
 use App\Http\Resources\UserResource;
-use Illuminate\Support\Str;
 use App\Models\User;
+
 class UserController extends Controller
 {
     /**
@@ -54,27 +54,26 @@ class UserController extends Controller
     }
 
     /**
-     * Custome method defined to get currency unit from request and 
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function searchUserDetails(Request $request)
-    {
-        //
-        $data = User::find($request['userID']);
-        return new UserResource($data);
-    }
-
-    /**
      * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
-        //
+        return new UserResource($user);
+    }
+
+    /**
+     * Custome method defined to get currency unit from request and 
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function searchUserDetails(User $user, $currency):UserResource
+    {
+        $user->getConvertedHourlyRate($currency);
+        return new UserResource($user);
     }
 
     /**

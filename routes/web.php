@@ -21,7 +21,9 @@ Route::get('/', function () {
 // Middleware to sanitise request
 Route::group(['middleware' => ['RequestSanitization']], function () {
     // route for custome search form
-    Route::get('user/search/',[UserController::class, 'searchUserDetails']);
+    Route::controller(UserController::class)->group(function() {
+        Route::get('/users/{user}/{currencyUnit}', 'searchUserDetails');
+    });
     // route for user
     Route::resource('user',UserController::class);
 });
