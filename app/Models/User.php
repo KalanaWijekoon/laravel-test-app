@@ -21,9 +21,9 @@ class User extends Model
     ];
 
     //Manipulate currency by converting
-    public function getConvertedHourlyRate($requiredCurrency)
+    public function getConvertedHourlyRate($requiredCurrency,$driver)
     {
-        $converter = new CurrencyConvertService($this->rate, $this->currency_unit, $requiredCurrency);
+        $converter = new CurrencyConvertService($this->rate, $this->currency_unit, $requiredCurrency,$driver);
         // initialize model's rate with new value from Currency Converter class
         $this->rate = $converter->getConvertedHourlyRate();
         $this->currency_unit = $requiredCurrency;

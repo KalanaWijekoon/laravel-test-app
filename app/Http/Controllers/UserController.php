@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Services\UserService;
 use App\Http\Resources\UserResource;
 use App\Models\User;
+use App\Currency\CurrencyDriverInterface;
 
 class UserController extends Controller
 {
@@ -70,9 +71,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function searchUserDetails(User $user, $currency):UserResource
+    public function searchUserDetails(User $user, $currency, CurrencyDriverInterface $driver):UserResource
     {
-        $user->getConvertedHourlyRate($currency);
+        $user->getConvertedHourlyRate($currency,$driver);
         return new UserResource($user);
     }
 

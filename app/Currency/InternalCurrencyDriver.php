@@ -7,6 +7,7 @@ class InternalCurrencyDriver implements CurrencyDriverInterface
 {
     public function getCurrencyRates($baseCurrency, $defaultCurrencies)
     {
+
         $baseCurrency = strtoupper($baseCurrency);
         
         if (in_array($baseCurrency, $defaultCurrencies)) {

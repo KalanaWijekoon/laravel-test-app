@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Currency\CurrencyDriverInterface;
 use App\Currency\InternalCurrencyDriver;
+use App\Currency\ExternalCurrencyDriver;
 use Illuminate\Support\ServiceProvider;
 
 class CurrencyDriverProvider extends ServiceProvider
@@ -17,8 +18,8 @@ class CurrencyDriverProvider extends ServiceProvider
     {
         // resolving driver based on the configuration
         $provider = match(env('CURRENCY_RATES_DRIVER')){
-            'local'=>ExternalCurrencyDriver::class,
-            'external'=>InternalCurrencyDriver::class,
+            'external'=>ExternalCurrencyDriver::class,
+            'internal'=>InternalCurrencyDriver::class,
             default => InternalCurrencyDriver::class,
         };
 

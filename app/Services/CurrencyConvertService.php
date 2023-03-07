@@ -1,8 +1,7 @@
 <?php
 
 namespace App\Services;
-use App\Currency\ExternalCurrencyDriver;
-use App\Currency\InternalCurrencyDriver;
+use App\Currency\CurrencyDriverInterface;
 use Exception;
 
 
@@ -17,32 +16,17 @@ class CurrencyConvertService
         'USD'
     ];
     //using constructor promoting
-    public function __construct(private $hourlyRate,private $currencyUnit, private $newCurrency)
+    public function __construct(private $hourlyRate,private $currencyUnit, private $newCurrency, $driver)
     {
-        $this->getExchangeRates();
+        $this->getExchangeRates($driver);
         $this->newCurrency = strtoupper($this->newCurrency);
     }
 
     //get currency rates
-    public function getExchangeRates()
+    public function getExchangeRates($driver)
     {
-        
-        $env = env('CURRENCY_RATES_DRIVER');
-        if($env ==='external')
-        {
-            try{
-                $externaldriver = new ExternalCurrencyDriver();
-                $this->rates = $externaldriver->getCurrencyRates($this->currencyUnit, $this->defaultCurrencies);
-            }catch(Exception $e){
-                $internaldriver = new InternalCurrencyDriver();
-                $this->rates = $internaldriver->getCurrencyRates($this->currencyUnit, $this->defaultCurrencies);
-            }
-        }
-        
-        if($env ==='local'){
-            $internaldriver = new InternalCurrencyDriver();
-            $this->rates = $internaldriver->getCurrencyRates($this->currencyUnit, $this->defaultCurrencies);
-        }
+        //
+        $this->rates = $driver->getCurrencyRates($this->currencyUnit, $this->defaultCurrencies);
     }
 
     //calculate new rate and return calculated rate
